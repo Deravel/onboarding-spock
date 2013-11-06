@@ -1,10 +1,8 @@
-buildscript {
-	dependencies {
-		classpath "com.bancvue:gradle-internal:0.1"
-	}
-}
+apply plugin: "groovy"
 
-apply plugin: "bancvue-internal"
+repositories {
+	mavenCentral()
+}
 
 dependencies {
 	testCompile 'org.codehaus.groovy:groovy-all:2.1.2'
