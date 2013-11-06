@@ -4,8 +4,8 @@ import spock.lang.Specification
 
 class _1ArgumentMatchingSpock extends Specification {
 
-	private ToStringService toStringService = Mock()
-	private Contrived contrived = new Contrived(toStringService)
+	private Service service = Mock()
+	private Contrived contrived = new Contrived(service)
 
 	/**
 	 * To set up an expection, simply invoke the method on the mock with appropriate arguments.
@@ -13,11 +13,11 @@ class _1ArgumentMatchingSpock extends Specification {
 	 */
 	def "should match arguments using equals"() {
 		// SNIPPET START
-		toStringService.toString("value") >> "value-string"
+		service.singleParamMethod("value") >> "value-string"
 		// SNIPPET END
 
 		when:
-		String value = contrived.toString("value")
+		String value = contrived.singleParamDelegate("value")
 
 		then:
 		value == "value-string"
@@ -28,11 +28,11 @@ class _1ArgumentMatchingSpock extends Specification {
 	 */
 	def "should match argument not equals"() {
 		// SNIPPET START
-		toStringService.toString(!"value1") >> "value-string"
+		service.singleParamMethod(!"value1") >> "value-string"
 		// SNIPPET END
 
 		when:
-		String value = contrived.toString("value2")
+		String value = contrived.singleParamDelegate("value2")
 
 		then:
 		value == "value-string"
@@ -43,11 +43,11 @@ class _1ArgumentMatchingSpock extends Specification {
 	 */
 	def "should match any argument"() {
 		// SNIPPET START
-		toStringService.toString(_) >> "value-string"
+		service.singleParamMethod(_) >> "value-string"
 		// SNIPPET END
 
 		when:
-		String value = contrived.toString(new Object())
+		String value = contrived.singleParamDelegate(new Object())
 
 		then:
 		value == "value-string"
@@ -58,11 +58,11 @@ class _1ArgumentMatchingSpock extends Specification {
 	 */
 	def "should match multiple any arguments"() {
 		// SNIPPET START
-		toStringService.concatenate(*_) >> "onetwo"
+		service.multiParamMethod(*_) >> "onetwo"
 		// SNIPPET END
 
 		// when
-		String value = contrived.concatenate(new Object(), new Object())
+		String value = contrived.multiParamDelegate(new Object(), new Object())
 
 		// then
 		value == "onetwo"
@@ -73,11 +73,11 @@ class _1ArgumentMatchingSpock extends Specification {
 	 */
 	def "should match any argument of type String"() {
 		// SNIPPET START
-		toStringService.toString(_ as String) >> "value"
+		service.singleParamMethod(_ as String) >> "value"
 		// SNIPPET END
 
 		when:
-		String value = contrived.toString("input-string")
+		String value = contrived.singleParamDelegate("input-string")
 
 		then:
 		value == "value"
@@ -88,11 +88,11 @@ class _1ArgumentMatchingSpock extends Specification {
 	 */
 	def "should match null argument"() {
 		// SNIPPET START
-		toStringService.toString(null) >> "value"
+		service.singleParamMethod(null) >> "value"
 		// SNIPPET END
 
 		when:
-		String value = contrived.toString(null)
+		String value = contrived.singleParamDelegate(null)
 
 		then:
 		value == "value"
@@ -103,11 +103,11 @@ class _1ArgumentMatchingSpock extends Specification {
 	 */
 	def "should match not null argument"() {
 		// SNIPPET START
-		toStringService.toString(!null) >> "value"
+		service.singleParamMethod(!null) >> "value"
 		// SNIPPET END
 
 		when:
-		String value = contrived.toString(new Object())
+		String value = contrived.singleParamDelegate(new Object())
 
 		then:
 		value == "value"
@@ -119,12 +119,12 @@ class _1ArgumentMatchingSpock extends Specification {
 	 */
 	def "should match dynamic predicate where argument is string of length greater than 4"() {
 		// SNIPPET START
-		toStringService.toString({String arg -> arg.size() > 4}) >> "value"
+		service.singleParamMethod({String arg -> arg.size() > 4}) >> "value"
 		// SNIPPET END
 
 		when:
 		int randomNumber = new Random().nextInt(10000)
-		String value = contrived.toString("1234" + randomNumber.toString())
+		String value = contrived.singleParamDelegate("1234" + randomNumber.toString())
 
 		then:
 		value == "value"

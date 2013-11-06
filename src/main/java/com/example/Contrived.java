@@ -5,27 +5,27 @@ import java.util.List;
 
 public class Contrived {
 
-	private ToStringService toStringService;
+	private Service service;
 
-	public Contrived(ToStringService toStringService) {
-		this.toStringService = toStringService;
+	public Contrived(Service service) {
+		this.service = service;
 	}
 
-	public String toString(Object object) {
-		return toStringService.toString(object);
+	public String singleParamDelegate(Object object) {
+		return service.singleParamMethod(object);
 	}
 
-	public List<String> toString(Object ... objects) {
+	public List<String> singleParamDelegateForEach(Object... objects) {
 		List<String> stringList = new ArrayList<>();
 
 		for (Object object : objects) {
-			stringList.add(toStringService.toString(object));
+			stringList.add(service.singleParamMethod(object));
 		}
 		return stringList;
 	}
 
-	public String concatenate(Object ... objects) {
-		return toStringService.concatenate(objects);
+	public String multiParamDelegate(Object... objects) {
+		return service.multiParamMethod(objects);
 	}
 
 }

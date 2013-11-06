@@ -13,74 +13,74 @@ import static org.mockito.Mockito.*
 class _2InvocationCardinalityMockito {
 
 	@Mock
-	private ToStringService toStringService
+	private Service service
 	private Contrived contrived
 
 	@Before
 	void setup() {
-		contrived = new Contrived(toStringService)
+		contrived = new Contrived(service)
 	}
 
 	@Test
 	void shouldMatchExactlyOnce() {
 		// given
-		when(toStringService.toString("object")).thenReturn("value")
+		when(service.singleParamMethod("object")).thenReturn("value")
 
 		// when
-		String value = contrived.toString("object")
+		String value = contrived.singleParamDelegate("object")
 
 		// then
-		verify(toStringService).toString("object")
+		verify(service).singleParamMethod("object")
 		assert value == "value"
 	}
 
 	@Test
 	void shouldMatchExactlyTwice() {
 		// given
-		when(toStringService.toString("object")).thenReturn("value")
+		when(service.singleParamMethod("object")).thenReturn("value")
 
 		// when
-		List<String> values = contrived.toString("object", "object")
+		List<String> values = contrived.singleParamDelegateForEach("object", "object")
 
 		// then
-		verify(toStringService, times(2)).toString("object")
+		verify(service, times(2)).singleParamMethod("object")
 		assert values == ["value", "value"]
 	}
 
 	@Test
 	void shouldNotMatchAny() {
 		// when
-		List<String> values = contrived.toString(new Object[0])
+		List<String> values = contrived.singleParamDelegateForEach(new Object[0])
 
 		// then
-		verify(toStringService, never()).toString("object")
+		verify(service, never()).singleParamMethod("object")
 		assert values == []
 	}
 
 	@Test
 	void shouldMatchBetweenOnceAndTwice() {
 		// given
-		when(toStringService.toString("object")).thenReturn("value")
+		when(service.singleParamMethod("object")).thenReturn("value")
 
 		// when
-		List<String> values = contrived.toString("object", "object")
+		List<String> values = contrived.singleParamDelegateForEach("object", "object")
 
 		// then
-		verify(toStringService, atLeast(1)).toString("object")
-		verify(toStringService, atMost(2)).toString("object")
+		verify(service, atLeast(1)).singleParamMethod("object")
+		verify(service, atMost(2)).singleParamMethod("object")
 		assert values == ["value", "value"]
 	}
 
 	@Test
 	void shouldMatchTwiceOrMore() {
 		// given
-		when(toStringService.toString("object")).thenReturn("value")
+		when(service.singleParamMethod("object")).thenReturn("value")
 
 		// when
-		List<String> values = contrived.toString("object", "object", "object")
+		List<String> values = contrived.singleParamDelegateForEach("object", "object", "object")
 
 		// then
-		verify(toStringService, atLeast(2)).toString("object")
+		verify(service, atLeast(2)).singleParamMethod("object")
 		assert values == ["value", "value", "value"]
 	}
 

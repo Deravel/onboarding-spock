@@ -4,19 +4,19 @@ import spock.lang.Specification
 
 class _3InvocationResponseSpock extends Specification {
 	
-	private ToStringService toStringService = Mock()
-	private Contrived contrived = new Contrived(toStringService)
+	private Service service = Mock()
+	private Contrived contrived = new Contrived(service)
 
 	/**
 	 * The right shift operator '>>' is used to specify a return value
 	 */
 	def "should return single response"() {
 		// SNIPPET START
-		toStringService.toString("object") >> "value"
+		service.singleParamMethod("object") >> "value"
 		// SNIPPET END
 
 		when:
-		String value = contrived.toString("object")
+		String value = contrived.singleParamDelegate("object")
 
 		then:
 		value == "value"
@@ -27,11 +27,11 @@ class _3InvocationResponseSpock extends Specification {
 	 */
 	def "should return chained responses"() {
 		// SNIPPET START
-		toStringService.toString("object") >>> ["value1", "value2"]
+		service.singleParamMethod("object") >>> ["value1", "value2"]
 		// SNIPPET END
 
 		when:
-		List<String> values = contrived.toString("object", "object")
+		List<String> values = contrived.singleParamDelegateForEach("object", "object")
 
 		then:
 		values == ["value1", "value2"]
@@ -42,11 +42,11 @@ class _3InvocationResponseSpock extends Specification {
 	 */
 	def "should throw exception"() {
 		// SNIPPET START
-		toStringService.toString("object") >> { throw new RuntimeException() }
+		service.singleParamMethod("object") >> { throw new RuntimeException() }
 		// SNIPPET END
 
 		when:
-		contrived.toString("object")
+		contrived.singleParamDelegate("object")
 
 		then:
 		thrown(RuntimeException)
@@ -59,17 +59,17 @@ class _3InvocationResponseSpock extends Specification {
 	 */
 	def "should return response on first invocation and throw exception on second"() {
 		// SNIPPET START
-		toStringService.toString("object") >> "value" >> { throw new RuntimeException() }
+		service.singleParamMethod("object") >> "value" >> { throw new RuntimeException() }
 		// SNIPPET END
 
 		when:
-		String value = contrived.toString("object")
+		String value = contrived.singleParamDelegate("object")
 
 		then:
 		value == "value"
 
 		when:
-		contrived.toString("object")
+		contrived.singleParamDelegate("object")
 
 		then:
 		thrown(RuntimeException)
@@ -82,11 +82,11 @@ class _3InvocationResponseSpock extends Specification {
 	 */
 	def "should throw exception if input is null"() {
 		// SNIPPET START
-		toStringService.toString(_) >> { args -> if (args[0] == null) throw new RuntimeException() }
+		service.singleParamMethod(_) >> { args -> if (args[0] == null) throw new RuntimeException() }
 		// SNIPPET END
 
 		when:
-		contrived.toString(null)
+		contrived.singleParamDelegate(null)
 
 		then:
 		thrown(RuntimeException)
@@ -98,11 +98,11 @@ class _3InvocationResponseSpock extends Specification {
 	 */
 	def "should return input argument appended with '-response'"() {
 		// SNIPPET START
-		toStringService.toString(_) >> { String arg -> "${arg}-response"}
+		service.singleParamMethod(_) >> { String arg -> "${arg}-response"}
 		// SNIPPET END
 
 		when:
-		String value = contrived.toString("object")
+		String value = contrived.singleParamDelegate("object")
 
 		then:
 		value == "object-response"

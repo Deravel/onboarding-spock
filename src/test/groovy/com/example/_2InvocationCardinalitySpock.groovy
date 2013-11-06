@@ -4,8 +4,8 @@ import spock.lang.Specification
 
 class _2InvocationCardinalitySpock extends Specification {
 	
-	private ToStringService toStringService = Mock()
-	private Contrived contrived = new Contrived(toStringService)
+	private Service service = Mock()
+	private Contrived contrived = new Contrived(service)
 
 	/**
 	 * The following syntax is used to verify cardinality of method invocations...
@@ -15,33 +15,33 @@ class _2InvocationCardinalitySpock extends Specification {
 	 */
 	def "should match exactly once"() {
 		when:
-		String value = contrived.toString("object")
+		String value = contrived.singleParamDelegate("object")
 
 		then:
 		// SNIPPET START
-		1 * toStringService.toString("object") >> "value"
+		1 * service.singleParamMethod("object") >> "value"
 		// SNIPPET END
 		value == "value"
 	}
 
 	def "should match exactly twice"() {
 		when:
-		List<String> values = contrived.toString("object", "object")
+		List<String> values = contrived.singleParamDelegateForEach("object", "object")
 
 		then:
 		// SNIPPET START
-		2 * toStringService.toString("object") >> "value"
+		2 * service.singleParamMethod("object") >> "value"
 		// SNIPPET END
 		values == ["value", "value"]
 	}
 
 	def "should not match any"() {
 		when:
-		List<String> values = contrived.toString(new Object[0])
+		List<String> values = contrived.singleParamDelegateForEach(new Object[0])
 
 		then:
 		// SNIPPET START
-		0 * toStringService.toString("object")
+		0 * service.singleParamMethod("object")
 		// SNIPPET END
 		values == []
 	}
@@ -52,11 +52,11 @@ class _2InvocationCardinalitySpock extends Specification {
 	 */
 	def "should match between once and twice"() {
 		when:
-		List<String> values = contrived.toString("object", "object")
+		List<String> values = contrived.singleParamDelegateForEach("object", "object")
 
 		then:
 		// SNIPPET START
-		(1..2) * toStringService.toString("object") >> "value"
+		(1..2) * service.singleParamMethod("object") >> "value"
 		// SNIPPET END
 		assert values == ["value", "value"]
 	}
@@ -66,11 +66,11 @@ class _2InvocationCardinalitySpock extends Specification {
 	 */
 	def "should match twice or more"() {
 		when:
-		List<String> values = contrived.toString("object", "object", "object")
+		List<String> values = contrived.singleParamDelegateForEach("object", "object", "object")
 
 		then:
 		// SNIPPET START
-		(2.._) * toStringService.toString("object") >> "value"
+		(2.._) * service.singleParamMethod("object") >> "value"
 		// SNIPPET END
 		values == ["value", "value", "value"]
 	}
@@ -80,11 +80,11 @@ class _2InvocationCardinalitySpock extends Specification {
 	 */
 	def "should match any times including zero"() {
 		when:
-		String value = contrived.toString("object")
+		String value = contrived.singleParamDelegate("object")
 
 		then:
 		// SNIPPET START
-		_ * toStringService.toString("object") >> "value"
+		_ * service.singleParamMethod("object") >> "value"
 		// SNIPPET END
 		assert value == "value"
 	}

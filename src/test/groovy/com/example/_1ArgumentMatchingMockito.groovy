@@ -16,21 +16,21 @@ import static org.mockito.Mockito.when
 class _1ArgumentMatchingMockito {
 
 	@Mock
-	private ToStringService toStringService
+	private Service service
 	private Contrived contrived
 
 	@Before
 	void setup() {
-		contrived = new Contrived(toStringService)
+		contrived = new Contrived(service)
 	}
 
 	@Test
 	void shouldMatchArgumentEquals() {
 		// given
-		when(toStringService.toString("value")).thenReturn("value-string")
+		when(service.singleParamMethod("value")).thenReturn("value-string")
 
 		// when
-		String value = contrived.toString("value")
+		String value = contrived.singleParamDelegate("value")
 
 		// then
 		assert value == "value-string"
@@ -39,10 +39,10 @@ class _1ArgumentMatchingMockito {
 	@Test
 	void shouldMatchArgumentNotEquals() {
 		// given
-		when(toStringService.toString(not(eq("value1")))).thenReturn("value-string")
+		when(service.singleParamMethod(not(eq("value1")))).thenReturn("value-string")
 
 		// when
-		String value = contrived.toString("value2")
+		String value = contrived.singleParamDelegate("value2")
 
 		// then
 		assert value == "value-string"
@@ -51,10 +51,10 @@ class _1ArgumentMatchingMockito {
 	@Test
 	void shouldMatchAnyArgument() {
 		// given
-		when(toStringService.toString(any())).thenReturn("value-string")
+		when(service.singleParamMethod(any())).thenReturn("value-string")
 
 		// when
-		String value = contrived.toString(new Object())
+		String value = contrived.singleParamDelegate(new Object())
 
 		// then
 		assert value == "value-string"
@@ -63,10 +63,10 @@ class _1ArgumentMatchingMockito {
 	@Test
 	void shouldMatchMultipleAnyArguments() {
 		// given
-		when(toStringService.concatenate(any(), any())).thenReturn("onetwo")
+		when(service.multiParamMethod(any(), any())).thenReturn("onetwo")
 
 		// when
-		String value = contrived.concatenate(new Object(), new Object())
+		String value = contrived.multiParamDelegate(new Object(), new Object())
 
 		// then
 		assert value == "onetwo"
@@ -75,10 +75,10 @@ class _1ArgumentMatchingMockito {
 	@Test
 	void shouldMatchAnyArgumentOfType() {
 		// given
-		when(toStringService.toString(anyString())).thenReturn("value")
+		when(service.singleParamMethod(anyString())).thenReturn("value")
 
 		// when
-		String value = contrived.toString("input-string")
+		String value = contrived.singleParamDelegate("input-string")
 
 		// then
 		assert value == "value"
@@ -87,10 +87,10 @@ class _1ArgumentMatchingMockito {
 	@Test
 	void shouldMatchNullArgument() {
 		// given
-		when(toStringService.toString(isNull())).thenReturn("value")
+		when(service.singleParamMethod(isNull())).thenReturn("value")
 
 		// when
-		String value = contrived.toString(null)
+		String value = contrived.singleParamDelegate(null)
 
 		// then
 		assert value == "value"
@@ -99,10 +99,10 @@ class _1ArgumentMatchingMockito {
 	@Test
 	void shouldMatchNotNullArgument() {
 		// given
-		when(toStringService.toString(isNotNull())).thenReturn("value")
+		when(service.singleParamMethod(isNotNull())).thenReturn("value")
 
 		// when
-		String value = contrived.toString(new Object())
+		String value = contrived.singleParamDelegate(new Object())
 
 		// then
 		assert value == "value"
@@ -112,11 +112,11 @@ class _1ArgumentMatchingMockito {
 	void shouldMatchDynamicPredicateWhereArgumentIsStringOfLengthGreaterThan4() {
 		ArgumentMatcher matcher = {String argument -> argument.size() > 4} as ArgumentMatcher
 		// given
-		when(toStringService.toString(argThat(matcher))).thenReturn("value")
+		when(service.singleParamMethod(argThat(matcher))).thenReturn("value")
 
 		// when
 		int randomNumber = new Random().nextInt(10000)
-		String value = contrived.toString("1234" + randomNumber.toString())
+		String value = contrived.singleParamDelegate("1234" + randomNumber.toString())
 
 		// then
 		assert value == "value"
