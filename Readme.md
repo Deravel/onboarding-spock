@@ -10,6 +10,7 @@ filling in code to make the tests pass
     // SNIPPET END
 
 
+If you need assistance along the way, see spock documentation here - http://docs.spockframework.org/en/latest
 
 
 TODO..
