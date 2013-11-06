@@ -1,5 +1,7 @@
-package com.example
+package com.example.interaction
 
+import com.example.Contrived
+import com.example.Service
 import spock.lang.Specification
 
 class _3InvocationResponseSpock extends Specification {

@@ -1,5 +1,7 @@
-package com.example
+package com.example.interaction
 
+import com.example.Contrived
+import com.example.Service
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
