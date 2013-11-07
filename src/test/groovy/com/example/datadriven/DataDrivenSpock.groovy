@@ -16,7 +16,7 @@ class DataDrivenSpock extends Specification {
 
 		then:
 		1 * toStringService.singleParamMethod(inputParameter) >> expectedReturnValue
-		assert actualReturnValue == expectedReturnValue
+		actualReturnValue == expectedReturnValue
 
 		where:
 		inputParameter | expectedReturnValue
@@ -30,7 +30,7 @@ class DataDrivenSpock extends Specification {
 
 		then:
 		1 * toStringService.singleParamMethod(inputParameter) >> expectedReturnValue
-		assert actualReturnValue == expectedReturnValue
+		actualReturnValue == expectedReturnValue
 
 		where:
 		inputParameter << ["input1", "input2"]
@@ -43,7 +43,7 @@ class DataDrivenSpock extends Specification {
 
 		then:
 		1 * toStringService.singleParamMethod(inputParameter) >> expectedReturnValue
-		assert actualReturnValue == expectedReturnValue
+		actualReturnValue == expectedReturnValue
 
 		where:
 		inputParameter | _
@@ -59,7 +59,7 @@ class DataDrivenSpock extends Specification {
 
 		then:
 		1 * toStringService.singleParamMethod(inputParameter) >> expectedReturnValue
-		assert actualReturnValue == expectedReturnValue
+		actualReturnValue == expectedReturnValue
 
 		where:
 		inputParameter | expectedReturnValue

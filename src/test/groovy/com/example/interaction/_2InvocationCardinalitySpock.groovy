@@ -60,7 +60,7 @@ class _2InvocationCardinalitySpock extends Specification {
 		// SNIPPET START
 		(1..2) * service.singleParamMethod("object") >> "value"
 		// SNIPPET END
-		assert values == ["value", "value"]
+		values == ["value", "value"]
 	}
 
 	/**
@@ -88,7 +88,7 @@ class _2InvocationCardinalitySpock extends Specification {
 		// SNIPPET START
 		_ * service.singleParamMethod("object") >> "value"
 		// SNIPPET END
-		assert value == "value"
+		value == "value"
 	}
 
 }
