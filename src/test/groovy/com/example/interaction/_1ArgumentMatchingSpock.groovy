@@ -30,11 +30,12 @@ class _1ArgumentMatchingSpock extends Specification {
 	 */
 	def "should match argument not equals"() {
 		// SNIPPET START
-		service.singleParamMethod(!"value1") >> "value-string"
+		service.singleParamMethod(!"value") >> "value-string"
 		// SNIPPET END
 
 		when:
-		String value = contrived.singleParamDelegate("value2")
+		int randomNumber = new Random().nextInt(10000)
+		String value = contrived.singleParamDelegate("value-${randomNumber}")
 
 		then:
 		value == "value-string"
@@ -63,10 +64,10 @@ class _1ArgumentMatchingSpock extends Specification {
 		service.multiParamMethod(*_) >> "onetwo"
 		// SNIPPET END
 
-		// when
+		when:
 		String value = contrived.multiParamDelegate(new Object(), new Object())
 
-		// then
+		then:
 		value == "onetwo"
 	}
 
