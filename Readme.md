@@ -1,4 +1,6 @@
-First, remove all answers by executing the following code...
+First, read this document - https://code.google.com/p/spock/wiki/SpockBasics - to get a general overview of the Spock framework.
+
+Next, remove all answers by executing the following code...
 
     ./gradlew removeSolutions
 
