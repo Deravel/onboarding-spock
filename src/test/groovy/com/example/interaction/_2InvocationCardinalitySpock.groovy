@@ -12,7 +12,7 @@ class _2InvocationCardinalitySpock extends Specification {
 	/**
 	 * The following syntax is used to verify cardinality of method invocations...
 	 *     <number of required invocations> * <method invocation>
-	 * If a return value is required, the left shift operator '>>' is used...
+	 * If a return value is required, the right shift operator '>>' is used...
 	 *     <number of required invocations> * <method invocation> >> <return value>
 	 */
 	def "should match exactly once"() {
@@ -44,9 +44,9 @@ class _2InvocationCardinalitySpock extends Specification {
 		then:
 		// SNIPPET START
 		0 * service.singleParamMethod("object")
-		// SNIPPET END
-		values == []
-	}
+        // SNIPPET END
+        values == []
+    }
 
 	/**
 	 * Groovy range syntax can be used to specify a cardinality range...
@@ -75,20 +75,6 @@ class _2InvocationCardinalitySpock extends Specification {
 		(2.._) * service.singleParamMethod("object") >> "value"
 		// SNIPPET END
 		values == ["value", "value", "value"]
-	}
-
-	/**
-	 * The underscore character '_' is used to specificy any number.
-	 */
-	def "should match any times including zero"() {
-		when:
-		String value = contrived.singleParamDelegate("object")
-
-		then:
-		// SNIPPET START
-		_ * service.singleParamMethod("object") >> "value"
-		// SNIPPET END
-		value == "value"
 	}
 
 }

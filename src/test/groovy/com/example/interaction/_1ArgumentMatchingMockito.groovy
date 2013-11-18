@@ -2,10 +2,10 @@ package com.example.interaction
 
 import com.example.Contrived
 import com.example.Service
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatcher
+import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
 
@@ -13,18 +13,13 @@ import static org.mockito.Matchers.*
 import static org.mockito.AdditionalMatchers.*
 import static org.mockito.Mockito.when
 
-
 @RunWith(MockitoJUnitRunner)
 class _1ArgumentMatchingMockito {
 
 	@Mock
 	private Service service
+    @InjectMocks
 	private Contrived contrived
-
-	@Before
-	void setup() {
-		contrived = new Contrived(service)
-	}
 
 	@Test
 	void shouldMatchArgumentEquals() {

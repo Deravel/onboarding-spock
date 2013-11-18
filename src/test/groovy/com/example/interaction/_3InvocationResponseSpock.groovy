@@ -80,7 +80,7 @@ class _3InvocationResponseSpock extends Specification {
 	/**
 	 * As we learned previously, the underscore character '_' is used to signify any argument.  This can be used
 	 * in combination with a closure as return value to selectively throw an exception.
-	 * If the closure declareas a single untyped parameter, it is passed the input method arguments as a list.
+	 * If the closure declares a single untyped parameter, it is passed the input method arguments as a list.
 	 */
 	def "should throw exception if input is null"() {
 		// SNIPPET START
