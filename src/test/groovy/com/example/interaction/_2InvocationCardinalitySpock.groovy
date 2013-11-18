@@ -44,8 +44,8 @@ class _2InvocationCardinalitySpock extends Specification {
 		then:
 		// SNIPPET START
 		0 * service.singleParamMethod("object")
-		// SNIPPET END
-		values == []
+        values == []
+        // SNIPPET END
 	}
 
 	/**
