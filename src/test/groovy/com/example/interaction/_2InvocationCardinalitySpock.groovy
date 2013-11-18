@@ -44,9 +44,9 @@ class _2InvocationCardinalitySpock extends Specification {
 		then:
 		// SNIPPET START
 		0 * service.singleParamMethod("object")
-        values == []
         // SNIPPET END
-	}
+        values == []
+    }
 
 	/**
 	 * Groovy range syntax can be used to specify a cardinality range...
@@ -75,24 +75,6 @@ class _2InvocationCardinalitySpock extends Specification {
 		(2.._) * service.singleParamMethod("object") >> "value"
 		// SNIPPET END
 		values == ["value", "value", "value"]
-	}
-
-	/**
-	 * The underscore character '_' is used to specify any number.
-	 */
-	def "should match any times including zero"() {
-		when:
-		String value = contrived.singleParamDelegate("object")
-
-		then:
-		// SNIPPET START
-		_ * service.singleParamMethod("object") >> "value"
-        /* NOTE ON ANSWER:
-        the spock framework docs recommend simplifying this to: service.singleParamMethod(_ ) >> "value"
-        see http://docs.spockframework.org/en/latest/interaction_based_testing.html under the Strict Mocking section
-         */
-		// SNIPPET END
-		value == "value"
 	}
 
 }
