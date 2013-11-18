@@ -2,26 +2,21 @@ package com.example.interaction
 
 import com.example.Contrived
 import com.example.Service
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
 
 import static org.mockito.Mockito.*
-
 
 @RunWith(MockitoJUnitRunner)
 class _2InvocationCardinalityMockito {
 
 	@Mock
 	private Service service
+    @InjectMocks
 	private Contrived contrived
-
-	@Before
-	void setup() {
-		contrived = new Contrived(service)
-	}
 
 	@Test
 	void shouldMatchExactlyOnce() {

@@ -2,25 +2,17 @@ package com.example.interaction
 
 import com.example.Contrived
 import com.example.Service
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.AdditionalAnswers
-import org.mockito.ArgumentMatcher
+import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.invocation.InvocationOnMock
 import org.mockito.runners.MockitoJUnitRunner
 import org.mockito.stubbing.Answer
 
 import static org.junit.Assert.fail
-import static org.mockito.AdditionalAnswers.returnsFirstArg
-import static org.mockito.BDDMockito.given
-import static org.mockito.Matchers.any
 import static org.mockito.Matchers.anyObject
 import static org.mockito.Matchers.anyString
-import static org.mockito.Matchers.argThat
-import static org.mockito.Matchers.eq
-import static org.mockito.Mockito.doAnswer
 import static org.mockito.Mockito.when
 
 @RunWith(MockitoJUnitRunner)
@@ -28,12 +20,8 @@ class _3InvocationResponseMockito {
 
 	@Mock
 	private Service service
+    @InjectMocks
 	private Contrived contrived
-
-	@Before
-	void setup() {
-		contrived = new Contrived(service)
-	}
 
 	@Test
 	void shouldReturnSingleResponse() {
