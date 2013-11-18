@@ -12,7 +12,7 @@ class _2InvocationCardinalitySpock extends Specification {
 	/**
 	 * The following syntax is used to verify cardinality of method invocations...
 	 *     <number of required invocations> * <method invocation>
-	 * If a return value is required, the left shift operator '>>' is used...
+	 * If a return value is required, the right shift operator '>>' is used...
 	 *     <number of required invocations> * <method invocation> >> <return value>
 	 */
 	def "should match exactly once"() {
@@ -78,7 +78,7 @@ class _2InvocationCardinalitySpock extends Specification {
 	}
 
 	/**
-	 * The underscore character '_' is used to specificy any number.
+	 * The underscore character '_' is used to specify any number.
 	 */
 	def "should match any times including zero"() {
 		when:
@@ -87,6 +87,10 @@ class _2InvocationCardinalitySpock extends Specification {
 		then:
 		// SNIPPET START
 		_ * service.singleParamMethod("object") >> "value"
+        /* NOTE ON ANSWER:
+        the spock framework docs recommend simplifying this to: service.singleParamMethod(_ ) >> "value"
+        see http://docs.spockframework.org/en/latest/interaction_based_testing.html under the Strict Mocking section
+         */
 		// SNIPPET END
 		value == "value"
 	}
