@@ -9,9 +9,9 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
 
+import static org.mockito.BDDMockito.given
 import static org.mockito.Matchers.*
 import static org.mockito.AdditionalMatchers.*
-import static org.mockito.Mockito.when
 
 @RunWith(MockitoJUnitRunner)
 class _1ArgumentMatchingMockito {
@@ -24,7 +24,7 @@ class _1ArgumentMatchingMockito {
 	@Test
 	void shouldMatchArgumentEquals() {
 		// given
-		when(service.singleParamMethod("value")).thenReturn("value-string")
+		given(service.singleParamMethod("value")).willReturn("value-string")
 
 		// when
 		String value = contrived.singleParamDelegate("value")
@@ -36,7 +36,7 @@ class _1ArgumentMatchingMockito {
 	@Test
 	void shouldMatchArgumentNotEquals() {
 		// given
-		when(service.singleParamMethod(not(eq("value1")))).thenReturn("value-string")
+		given(service.singleParamMethod(not(eq("value1")))).willReturn("value-string")
 
 		// when
 		String value = contrived.singleParamDelegate("value2")
@@ -48,7 +48,7 @@ class _1ArgumentMatchingMockito {
 	@Test
 	void shouldMatchAnyArgument() {
 		// given
-		when(service.singleParamMethod(any())).thenReturn("value-string")
+		given(service.singleParamMethod(any())).willReturn("value-string")
 
 		// when
 		String value = contrived.singleParamDelegate(new Object())
@@ -60,7 +60,7 @@ class _1ArgumentMatchingMockito {
 	@Test
 	void shouldMatchMultipleAnyArguments() {
 		// given
-		when(service.multiParamMethod(any(), any())).thenReturn("onetwo")
+		given(service.multiParamMethod(any(), any())).willReturn("onetwo")
 
 		// when
 		String value = contrived.multiParamDelegate(new Object(), new Object())
@@ -72,7 +72,7 @@ class _1ArgumentMatchingMockito {
 	@Test
 	void shouldMatchAnyArgumentOfType() {
 		// given
-		when(service.singleParamMethod(anyString())).thenReturn("value")
+		given(service.singleParamMethod(anyString())).willReturn("value")
 
 		// when
 		String value = contrived.singleParamDelegate("input-string")
@@ -84,7 +84,7 @@ class _1ArgumentMatchingMockito {
 	@Test
 	void shouldMatchNullArgument() {
 		// given
-		when(service.singleParamMethod(isNull())).thenReturn("value")
+		given(service.singleParamMethod(isNull())).willReturn("value")
 
 		// when
 		String value = contrived.singleParamDelegate(null)
@@ -96,7 +96,7 @@ class _1ArgumentMatchingMockito {
 	@Test
 	void shouldMatchNotNullArgument() {
 		// given
-		when(service.singleParamMethod(isNotNull())).thenReturn("value")
+		given(service.singleParamMethod(isNotNull())).willReturn("value")
 
 		// when
 		String value = contrived.singleParamDelegate(new Object())
@@ -109,7 +109,7 @@ class _1ArgumentMatchingMockito {
 	void shouldMatchDynamicPredicateWhereArgumentIsStringOfLengthGreaterThan4() {
 		ArgumentMatcher matcher = {String argument -> argument.size() > 4} as ArgumentMatcher
 		// given
-		when(service.singleParamMethod(argThat(matcher))).thenReturn("value")
+		given(service.singleParamMethod(argThat(matcher))).willReturn("value")
 
 		// when
 		int randomNumber = new Random().nextInt(10000)

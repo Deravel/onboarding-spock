@@ -11,9 +11,9 @@ import org.mockito.runners.MockitoJUnitRunner
 import org.mockito.stubbing.Answer
 
 import static org.junit.Assert.fail
+import static org.mockito.BDDMockito.given
 import static org.mockito.Matchers.anyObject
 import static org.mockito.Matchers.anyString
-import static org.mockito.Mockito.when
 
 @RunWith(MockitoJUnitRunner)
 class _3InvocationResponseMockito {
@@ -26,7 +26,7 @@ class _3InvocationResponseMockito {
 	@Test
 	void shouldReturnSingleResponse() {
 		// given
-		when(service.singleParamMethod("value")).thenReturn("value-string")
+		given(service.singleParamMethod("value")).willReturn("value-string")
 
 		// when
 		String value = contrived.singleParamDelegate("value")
@@ -37,8 +37,8 @@ class _3InvocationResponseMockito {
 
 	@Test
 	void shouldReturnChainedResponses() {
-		// given
-		when(service.singleParamMethod("object")).thenReturn("value1").thenReturn("value2")
+		// willReturn
+		given(service.singleParamMethod("object")).willReturn("value1").willReturn("value2")
 
 		// when
 		List<String> values = contrived.singleParamDelegateForEach("object", "object")
@@ -50,7 +50,7 @@ class _3InvocationResponseMockito {
 	@Test(expected = RuntimeException)
 	void shouldThrowException() {
 		// given
-		when(service.singleParamMethod("object")).thenThrow(new RuntimeException())
+		given(service.singleParamMethod("object")).willThrow(new RuntimeException())
 
 		// when
 		contrived.singleParamDelegate("object")
@@ -59,7 +59,7 @@ class _3InvocationResponseMockito {
 	@Test
 	void shouldReturnResponseOnFirstInvocationAndThrowExceptionOnSecond() {
 		// given
-		when(service.singleParamMethod("object")).thenReturn("value").thenThrow(new RuntimeException())
+		given(service.singleParamMethod("object")).willReturn("value").willThrow(new RuntimeException())
 
 		// when
 		String value = contrived.singleParamDelegate("object")
@@ -77,7 +77,7 @@ class _3InvocationResponseMockito {
 	@Test
 	void shouldOptionallyThrowExceptionBasedOnInputArguments() {
         //given
-        when(service.singleParamMethod(anyObject())).thenAnswer(throwRuntimeExceptionIfNull())
+        given(service.singleParamMethod(anyObject())).willAnswer(throwRuntimeExceptionIfNull())
 
         //when
         try {
@@ -99,7 +99,7 @@ class _3InvocationResponseMockito {
     @Test
 	void shouldUseArgumentsToCalculateResponse() {
         //given
-        when(service.singleParamMethod(anyString())).thenAnswer(useInputInReturn())
+        given(service.singleParamMethod(anyString())).willAnswer(useInputInReturn())
 
         //when
         String value = contrived.singleParamDelegate("object")
