@@ -5,7 +5,7 @@ import com.example.Service
 import spock.lang.Specification
 import spock.lang.Unroll
 
-@Unroll("singleParamMethod with #inputParameter is #expectedReturnValue")
+@Unroll("#featureName with #inputParameter is #expectedReturnValue")
 class DataDrivenSpock extends Specification {
 
 	private Service toStringService = Mock()
