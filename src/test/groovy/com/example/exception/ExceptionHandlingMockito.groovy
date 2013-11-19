@@ -54,9 +54,7 @@ class ExceptionHandlingMockito {
 		String expectedMessage = "failure!"
 		int expectedStatusCode = 1
 		exception.expect(ServiceException)
-		// NOTE: the following line should work but fails with a NoSuchMethodError; likely, it's a
-		// mismatch between spock and junit hamcrest libraries
-//		exception.expectMessage(expectedMessage)
+		exception.expectMessage(expectedMessage)
 		exception.expect(StatusCodeMatcher.hasStatusCode(expectedStatusCode))
 
 		// when
