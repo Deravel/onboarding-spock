@@ -12,7 +12,7 @@ class _4ExceptionHandlingSpock extends Specification {
 
 	/**
 	 * The 'thrown' method is used to indicate an expected exception.  The method
-	 * accepts one parameter which is type of hte expected exception.
+	 * accepts one parameter - the type of the expected exception.
 	 */
 	def "should detect exception by type"() {
 		when:
