@@ -1,4 +1,4 @@
-package com.example.interaction
+package com.example.exception
 
 import com.example.Contrived
 import com.example.Service
@@ -16,7 +16,7 @@ import org.mockito.runners.MockitoJUnitRunner
 import static org.junit.Assert.fail
 
 @RunWith(MockitoJUnitRunner)
-class _4ExceptionHandlingMockito {
+class ExceptionHandlingMockito {
 
 	@Mock
 	private Service service

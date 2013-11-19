@@ -1,11 +1,11 @@
-package com.example.interaction
+package com.example.exception
 
 import com.example.Contrived
 import com.example.Service
 import com.example.ServiceException
 import spock.lang.Specification
 
-class _4ExceptionHandlingSpock extends Specification {
+class ExceptionHandlingSpock extends Specification {
 
 	private Service service = Mock()
 	private Contrived contrived = new Contrived(service)
