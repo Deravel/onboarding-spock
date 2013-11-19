@@ -28,4 +28,9 @@ public class Contrived {
 		return service.multiParamMethod(objects);
 	}
 
+
+    public void throwException(String message, int statusCode) {
+        throw new ServiceException(message, statusCode);
+    }
+
 }
