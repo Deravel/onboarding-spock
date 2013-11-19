@@ -4,7 +4,7 @@ Next, remove all answers by executing the following code...
 
     ./gradlew removeSolutions
 
-At this point, all the *Spock tests in the com.example.interaction package should fail.
+At this point, all the *Spock tests in the com.example.interaction and com.example.exception packages should fail.
 Go through the various tests in numeric order, filling in code to make the tests pass.
 
     // SNIPPET START
