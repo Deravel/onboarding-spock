@@ -11,9 +11,9 @@ import static org.mockito.BDDMockito.given
 import static org.mockito.Mockito.mock
 
 @RunWith(Parameterized)
-class SimpleDataDriveJunitTest {
+class SimpleDataDrivenJunitTest {
 
-	@Parameterized.Parameters
+	@Parameterized.Parameters(name = "{index}: singleParamDelegate({0}) = {1}")
 	public static Collection<Object[]> inputAndReturnValues() {
 		return Arrays.asList(
 				["input1", "return1"].toArray(),
@@ -26,7 +26,7 @@ class SimpleDataDriveJunitTest {
 	private String inputParameter
 	private String expectedReturnValue
 
-	public SimpleDataDriveJunitTest(String inputParameter, String expectedReturnValue) {
+	public SimpleDataDrivenJunitTest(String inputParameter, String expectedReturnValue) {
 		this.inputParameter = inputParameter
 		this.expectedReturnValue = expectedReturnValue
 	}
