@@ -14,6 +14,7 @@ class _1ArgumentMatchingSpock extends Specification {
 	 * The right shift operator '>>' is used to specify a return value
 	 */
 	def "should match arguments using equals"() {
+		given:
 		// SNIPPET START
 		service.singleParamMethod("value") >> "value-string"
 		// SNIPPET END
@@ -29,6 +30,7 @@ class _1ArgumentMatchingSpock extends Specification {
 	 * The bang character '!' is used to match negation.
 	 */
 	def "should match argument not equals"() {
+		given:
 		// SNIPPET START
 		service.singleParamMethod(!"value") >> "value-string"
 		// SNIPPET END
@@ -45,6 +47,7 @@ class _1ArgumentMatchingSpock extends Specification {
 	 * The underscore character '_' is used to match any argument.
 	 */
 	def "should match any argument"() {
+		given:
 		// SNIPPET START
 		service.singleParamMethod(_) >> "value-string"
 		// SNIPPET END
@@ -60,6 +63,7 @@ class _1ArgumentMatchingSpock extends Specification {
 	 * The character sequence '*_' is used to match any number of arguments.
 	 */
 	def "should match multiple any arguments"() {
+		given:
 		// SNIPPET START
 		service.multiParamMethod(*_) >> "onetwo"
 		// SNIPPET END
@@ -75,6 +79,7 @@ class _1ArgumentMatchingSpock extends Specification {
 	 * '_ as <type>' is used to match an argument of a specificed type
 	 */
 	def "should match any argument of type String"() {
+		given:
 		// SNIPPET START
 		service.singleParamMethod(_ as String) >> "value"
 		// SNIPPET END
@@ -90,6 +95,7 @@ class _1ArgumentMatchingSpock extends Specification {
 	 * The null keyword is used to match a null argument.
 	 */
 	def "should match null argument"() {
+		given:
 		// SNIPPET START
 		service.singleParamMethod(null) >> "value"
 		// SNIPPET END
@@ -105,6 +111,7 @@ class _1ArgumentMatchingSpock extends Specification {
 	 * The expression !null is used to match any non-null argument.
 	 */
 	def "should match not null argument"() {
+		given:
 		// SNIPPET START
 		service.singleParamMethod(!null) >> "value"
 		// SNIPPET END
@@ -121,6 +128,7 @@ class _1ArgumentMatchingSpock extends Specification {
 	 * to true.
 	 */
 	def "should match dynamic predicate where argument is string of length greater than 4"() {
+		given:
 		// SNIPPET START
 		service.singleParamMethod({String arg -> arg.size() > 4}) >> "value"
 		// SNIPPET END

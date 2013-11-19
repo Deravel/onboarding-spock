@@ -13,6 +13,7 @@ class _3InvocationResponseSpock extends Specification {
 	 * The right shift operator '>>' is used to specify a return value
 	 */
 	def "should return single response"() {
+		given:
 		// SNIPPET START
 		service.singleParamMethod("object") >> "value"
 		// SNIPPET END
@@ -28,6 +29,7 @@ class _3InvocationResponseSpock extends Specification {
 	 * The right triple shift operator '>>>' along with an array of values is used to chain multiple responses.
 	 */
 	def "should return chained responses"() {
+		given:
 		// SNIPPET START
 		service.singleParamMethod("object") >>> ["value1", "value2"]
 		// SNIPPET END
@@ -43,6 +45,7 @@ class _3InvocationResponseSpock extends Specification {
 	 * If a closure is provided as the response object, it's contents will be interpreted.
 	 */
 	def "should throw exception"() {
+		given:
 		// SNIPPET START
 		service.singleParamMethod("object") >> { throw new RuntimeException() }
 		// SNIPPET END
@@ -60,6 +63,7 @@ class _3InvocationResponseSpock extends Specification {
 	 * right shift operator '>>' can be chained.
 	 */
 	def "should return response on first invocation and throw exception on second"() {
+		given:
 		// SNIPPET START
 		service.singleParamMethod("object") >> "value" >> { throw new RuntimeException() }
 		// SNIPPET END
@@ -83,6 +87,7 @@ class _3InvocationResponseSpock extends Specification {
 	 * If the closure declares a single untyped parameter, it is passed the input method arguments as a list.
 	 */
 	def "should throw exception if input is null"() {
+		given:
 		// SNIPPET START
 		service.singleParamMethod(_) >> { args -> if (args[0] == null) throw new RuntimeException() }
 		// SNIPPET END
@@ -99,6 +104,7 @@ class _3InvocationResponseSpock extends Specification {
 	 * individual arguments.
 	 */
 	def "should return input argument appended with '-response'"() {
+		given:
 		// SNIPPET START
 		service.singleParamMethod(_) >> { String arg -> "${arg}-response"}
 		// SNIPPET END
