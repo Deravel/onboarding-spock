@@ -5,6 +5,7 @@ import com.example.Service
 import spock.lang.Specification
 import spock.lang.Unroll
 
+@Unroll("#featureName with #inputParameter is #expectedReturnValue")
 class DataDrivenSpock extends Specification {
 
 	private Service toStringService = Mock()
@@ -53,7 +54,7 @@ class DataDrivenSpock extends Specification {
 	}
 
 	@Unroll
-	def "simple test with unrolling and placeholders should return #expectedReturnValue when input is #inputParameter"() {
+	def "simple test with unrolling override and placeholders should return #expectedReturnValue when input is #inputParameter"() {
 		when:
 		String actualReturnValue = contrived.singleParamDelegate(inputParameter)
 
