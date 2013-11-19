@@ -54,7 +54,7 @@ class DataDrivenSpock extends Specification {
 	}
 
 	@Unroll
-	def "simple test with unrolling and placeholders should return #expectedReturnValue when input is #inputParameter"() {
+	def "simple test with unrolling override and placeholders should return #expectedReturnValue when input is #inputParameter"() {
 		when:
 		String actualReturnValue = contrived.singleParamDelegate(inputParameter)
 
