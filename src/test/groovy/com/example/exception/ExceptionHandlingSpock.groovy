@@ -26,7 +26,8 @@ class ExceptionHandlingSpock extends Specification {
 
 	/**
 	 * The 'thrown' method returns the thrown exception which can then be inspected
-	 * and used to make assertions.
+	 * and used to make assertions.  In addition, if the type parameter is omitted, the
+	 * type will be inferred from the variable type on the left-hand side of the assignment.
 	 */
 	def "should detect exception by type and assert internal values"() {
 		given:
@@ -38,7 +39,7 @@ class ExceptionHandlingSpock extends Specification {
 
 		then:
 		// SNIPPET START
-		ServiceException ex = thrown(ServiceException)
+		ServiceException ex = thrown()
 		ex.message == expectedMessage
 		ex.statusCode == expectedStatusCode
 		// SNIPPET END
