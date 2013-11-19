@@ -8,6 +8,7 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.runners.MockitoJUnitRunner
 
+import static org.mockito.BDDMockito.given
 import static org.mockito.Mockito.*
 
 @RunWith(MockitoJUnitRunner)
@@ -21,7 +22,7 @@ class _2InvocationCardinalityMockito {
 	@Test
 	void shouldMatchExactlyOnce() {
 		// given
-		when(service.singleParamMethod("object")).thenReturn("value")
+		given(service.singleParamMethod("object")).willReturn("value")
 
 		// when
 		String value = contrived.singleParamDelegate("object")
@@ -34,7 +35,7 @@ class _2InvocationCardinalityMockito {
 	@Test
 	void shouldMatchExactlyTwice() {
 		// given
-		when(service.singleParamMethod("object")).thenReturn("value")
+		given(service.singleParamMethod("object")).willReturn("value")
 
 		// when
 		List<String> values = contrived.singleParamDelegateForEach("object", "object")
@@ -57,7 +58,7 @@ class _2InvocationCardinalityMockito {
 	@Test
 	void shouldMatchBetweenOnceAndTwice() {
 		// given
-		when(service.singleParamMethod("object")).thenReturn("value")
+		given(service.singleParamMethod("object")).willReturn("value")
 
 		// when
 		List<String> values = contrived.singleParamDelegateForEach("object", "object")
@@ -71,7 +72,7 @@ class _2InvocationCardinalityMockito {
 	@Test
 	void shouldMatchTwiceOrMore() {
 		// given
-		when(service.singleParamMethod("object")).thenReturn("value")
+		given(service.singleParamMethod("object")).willReturn("value")
 
 		// when
 		List<String> values = contrived.singleParamDelegateForEach("object", "object", "object")

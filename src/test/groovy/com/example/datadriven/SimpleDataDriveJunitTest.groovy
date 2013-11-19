@@ -7,8 +7,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
+import static org.mockito.BDDMockito.given
 import static org.mockito.Mockito.mock
-import static org.mockito.Mockito.when
 
 @RunWith(Parameterized)
 class SimpleDataDriveJunitTest {
@@ -40,7 +40,7 @@ class SimpleDataDriveJunitTest {
 	@Test
 	public void simpleDataDrivenTest() {
 		// given
-		when(service.singleParamMethod(inputParameter)).thenReturn(expectedReturnValue)
+		given(service.singleParamMethod(inputParameter)).willReturn(expectedReturnValue)
 
 		// when
 		String actualReturnValue = contrived.singleParamDelegate(inputParameter)
