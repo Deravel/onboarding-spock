@@ -20,6 +20,8 @@ dependencies {
 	}
 }
 
+test.exclude 'com/example/gotchas/**'
+
 task removeSolutions << {
     String solutionRegex = $/(?sm)(// SNIPPET START).*?^(\s+// SNIPPET END)/$
     sourceSets.test.allSource.files.each { File sourceFile ->
