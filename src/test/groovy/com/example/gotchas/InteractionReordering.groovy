@@ -27,11 +27,7 @@ class InteractionReordering extends Specification {
 		}
 		assert value == "value"
 
-
-		when: "the mock interaction is not contained directly within the 'then' block"
-		contrived.singleParamDelegate("object")
-
-		then: "the test will fail b/c the method is not reordered and the interactions are executed after the 'when' block"
+		then: "otherwise, the test will fail b/c the method is not reordered and the interactions are executed after the 'when' block"
 		assertSingleParamMethodInvokedOnceAndReturns("value")
 	}
 
