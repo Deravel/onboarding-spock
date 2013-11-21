@@ -22,9 +22,7 @@ mockito test for an example.
 
 If you need assistance along the way, see spock [documentation](http://docs.spockframework.org/en/latest)
 
-After running through the basics, have a look at
-
-    com.example.datadriven
-    com.example.gotchas
-
-which provide a brief overview of data-driven tests in Spock, as well as some non-obvious behavior to be aware of.
+After running through the basics, have a look at com.example.datadriven for a brief overview of data-driven tests
+in Spock.  Also, com.example.gotchas goes over some non-obvious behavior to be aware of.  Note that the tests in
+the gotchas package are intended to fail - the purpose is to show you the actual failures under these conditions
+in the hopes of recognizing if you run across them in the future.
