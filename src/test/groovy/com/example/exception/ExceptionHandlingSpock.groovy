@@ -45,4 +45,20 @@ class ExceptionHandlingSpock extends Specification {
 		// SNIPPET END
 	}
 
+	/**
+	 * The 'notThrown' method provides explicit verification that an exception should not be thrown
+	 */
+	def "should not throw NullPointerException when key is null"() {
+		given:
+		HashMap map = new HashMap()
+
+		when:
+		map.put(null, "element")
+
+		then:
+		// SNIPPET START
+		notThrown(NullPointerException)
+		// SNIPPET END
+	}
+
 }
