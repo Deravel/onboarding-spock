@@ -24,8 +24,10 @@ test.exclude 'com/example/gotchas/**'
 
 task removeSolutions << {
 	String solutionRegex = $/(?sm)(// SNIPPET START).*?^(\s+// SNIPPET END)/$
+	String classSolutionRegex = $/(?sm)(// CLASS SNIPPET START).*?^(\s+// CLASS SNIPPET END)/$
 	sourceSets.test.allSource.files.each { File sourceFile ->
 		sourceFile.text = sourceFile.text.replaceAll(solutionRegex, '$1\n\t\torg.spockframework.util.Assert.fail("Remove me!")\n$2')
+		sourceFile.text = sourceFile.text.replaceAll(classSolutionRegex, '$1\n\n$2')
 	}
 	println "Solutions removed"
 }
