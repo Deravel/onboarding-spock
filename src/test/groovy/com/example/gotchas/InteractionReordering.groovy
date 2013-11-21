@@ -9,7 +9,7 @@ class InteractionReordering extends Specification {
 	private Service service = Mock()
 	private Contrived contrived = new Contrived(service)
 
-	def "interactions within a 'then' block are reordered at runtime and executed prior to the 'then' block "() {
+	def "interactions within a 'then' block are reordered at runtime and executed prior to the 'when' block "() {
 		when: "the mock interaction is required during execution of the 'when' block"
 		String value = contrived.singleParamDelegate("object")
 
